@@ -10,5 +10,7 @@ namespace DALC
     internal interface IDALC
     {
         List<Category> getAllCategory();
+        string addNewsToSpecificCategory(NewsRequest news);
+        List<News> getAllNewsForASpecificCategory(int category_id);
     }
 }

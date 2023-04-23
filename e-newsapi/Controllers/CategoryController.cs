@@ -20,5 +20,18 @@ namespace e_newsapi.Controllers
         {
            return blc.GetCategories();
         }
+
+        [HttpPost("addnews")]
+        public string addNewsToCategory(NewsRequest news)
+        {
+            return blc.addNewsToCategory(news);
+        }
+
+        [HttpGet("news")]
+        public List<News> GetNews()
+        {
+            int id = Convert.ToInt32(Request.Query["id"]);
+            return blc.GetNews(id);
+        }
     }
 }

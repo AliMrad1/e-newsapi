@@ -16,5 +16,15 @@ namespace BLC
         {
             return DALC_SQL.getAllCategory();
         }
+
+        public string addNewsToCategory(NewsRequest news)
+        {
+            return DALC_SQL.addNewsToSpecificCategory(news);
+        }
+
+        public List<News> GetNews(int category_id)
+        {
+            return DALC_SQL.getAllNewsForASpecificCategory(category_id);
+        }
     }
 }
