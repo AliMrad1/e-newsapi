@@ -22,9 +22,11 @@ namespace e_newsapi.Controllers
         }
 
         [HttpPost("addnews")]
-        public string addNewsToCategory(NewsRequest news)
+        public IActionResult addNewsToCategory(NewsRequest news)
         {
-            return blc.addNewsToCategory(news);
+            string response = blc.addNewsToCategory(news);
+            AddNewsResponse p = new(response);
+            return Ok(p);
         }
 
         [HttpGet("news")]
