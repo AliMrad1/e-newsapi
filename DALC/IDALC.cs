@@ -12,5 +12,6 @@ namespace DALC
         List<Category> getAllCategory();
         string addNewsToSpecificCategory(NewsRequest news);
         List<News> getAllNewsForASpecificCategory(int category_id);
+        List<News> slider_news();
     }
 }

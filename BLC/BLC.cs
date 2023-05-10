@@ -26,5 +26,10 @@ namespace BLC
         {
             return DALC_SQL.getAllNewsForASpecificCategory(category_id);
         }
+
+        public List<News> SLIDER_NEWS()
+        {
+            return DALC_SQL.slider_news();
+        }
     }
 }

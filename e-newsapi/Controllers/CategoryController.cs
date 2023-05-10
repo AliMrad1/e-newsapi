@@ -35,5 +35,11 @@ namespace e_newsapi.Controllers
             int id = Convert.ToInt32(Request.Query["id"]);
             return blc.GetNews(id);
         }
+
+        [HttpGet("slider/news")]
+        public List<News> SLIDER_NEWS()
+        {
+            return blc.SLIDER_NEWS();
+        }
     }
 }

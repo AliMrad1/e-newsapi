@@ -88,5 +88,37 @@ namespace DALC
             }
             return news;
         }
+
+        public List<News> slider_news()
+        {
+            List<News> SLIDER_NEWS = new List<News>();
+            using (SqlConnection connection = new SqlConnection(_CONN_STR))
+            {
+                connection.Open();
+                String sql = $"EXECUTE  [dbo].[SLIDER_NEWS];";
+
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            News p = new()
+                            {
+                                id = (int)reader.GetInt64(0),
+                                title = reader.GetString(1),
+                                author = reader.GetString(2),
+                                short_desc = reader.GetString(3),
+                                img_url = reader.GetString(4),
+                                created_at = (string)reader.GetDateTime(5).ToString("yyyy-MM-dd HH:mm:ss"),
+                                category = new() { name = reader.GetString(6) }
+                            };
+                            SLIDER_NEWS.Add(p);
+                        }
+                    }
+                }
+            }
+            return SLIDER_NEWS;
+        }
     }
 }
