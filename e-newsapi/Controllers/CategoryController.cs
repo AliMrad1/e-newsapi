@@ -21,12 +21,19 @@ namespace e_newsapi.Controllers
            return blc.GetCategories();
         }
 
-        [HttpPost("addnews")]
-        public IActionResult addNewsToCategory(NewsRequest news)
+        [HttpPost("addnews"), DisableRequestSizeLimit]
+        [Consumes("multipart/form-data")]
+        public IActionResult addNewsToCategory(IFormFile file)
         {
-            string response = blc.addNewsToCategory(news);
-            AddNewsResponse p = new(response);
-            return Ok(p);
+            if (file.Length <= 0)
+            {
+                return BadRequest("No file is selected");
+            }
+
+            //string response = blc.addNewsToCategory(News,file);
+
+           // AddNewsResponse p = new(response);
+            return Ok("wooww");
         }
 
         [HttpGet("news")]

@@ -1,5 +1,6 @@
 ﻿using Entities;
 using DALC;
+using Microsoft.AspNetCore.Http;
 
 namespace BLC
 {
@@ -17,8 +18,13 @@ namespace BLC
             return DALC_SQL.getAllCategory();
         }
 
-        public string addNewsToCategory(NewsRequest news)
+        public string addNewsToCategory(NewsRequest news, IFormFile file_s)
         {
+            var file = file_s;
+            var firebaseUploadImage = new FirebaseOperations(file);
+            firebaseUploadImage.UpdownImage();
+            string download_url = firebaseUploadImage.downloadUrl;
+            news.img_url = download_url;
             return DALC_SQL.addNewsToSpecificCategory(news);
         }
 
